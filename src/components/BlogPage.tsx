@@ -2,13 +2,32 @@ import React, { useState } from 'react'
 import Layout from '../pages/Layout'
 import Cursor from './Cursor'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import OptimizedImage from './OptimizedImage';
 
+interface BlogContext {
+  blog: {
+    title: string;
+    content: {
+      raw: string;
+    };
+    author: string;
+    publishDate: string;
+    image: {
+      title: string;
+      url: string;
+    };
+    introText: {
+      raw: string;
+    };
+    imageOrigin: {
+      raw: string;
+    };
+  };
+}
 
-export default function BlogPage({ pageContext }) {
-
+export default function BlogPage({ pageContext }: { pageContext: BlogContext }) {
 
   const { title, content, author, publishDate, image, introText, imageOrigin } = pageContext.blog;
-
 
   const dateString: Date = new Date(publishDate);
 
@@ -52,7 +71,15 @@ export default function BlogPage({ pageContext }) {
           </header>
           <p className="lead text-darkGrey dark:text-lightCream mt-6">{documentToReactComponents(parsedIntro)}</p>
           <figure>
-            <img src={image.url} alt={image.title} />
+            <OptimizedImage 
+              src={image.url} 
+              alt={image.title} 
+              width={800}
+              height={600}
+              loading="eager"
+              priority={true}
+              className="w-full h-auto"
+            />
               <figcaption className="text-darkGrey dark:text-lightCream mt-6">{documentToReactComponents(parsedImageOrigin)}</figcaption>
           </figure>
           <p className="text-darkGrey dark:text-lightCream mt-6">{documentToReactComponents(parsedContent)}</p>

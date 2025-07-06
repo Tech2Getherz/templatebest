@@ -12,6 +12,7 @@ import Marquee from 'react-fast-marquee';
 import Cursor from '../components/Cursor';
 import Loader from '../components/Loader'
 import { useMediaQuery } from '@react-hook/media-query';
+import OptimizedImage from '../components/OptimizedImage';
 import 'animate.css'
 
 
@@ -247,25 +248,46 @@ const IndexPage = ({ data }) => {
   <motion.h1
     onMouseEnter={() => handleMouseEnter('text')}
     onMouseLeave={handleMouseLeave}
-    className={`text-darkGrey font-bold mt-20 mb-auto mx-auto uppercase dark:text-cream animate__animated md:text-8xl lg:text-8xl text-8xl xsm:text-7xl xsm:z-20 md:z-0  text-center animate__animated animate__bounceInUp`}
+    className={`text-darkGrey font-bold mt-20 mb-auto mx-auto uppercase dark:text-cream animate__animated md:text-8xl lg:text-8xl text-8xl xsm:text-7xl xsm:z-20 md:z-0 text-center animate__animated animate__bounceInUp drop-shadow-lg`}
     variants={textVariant}
-    style={isSmall ? { paddingTop: '40vh', fontSize: '3rem', textShadow: 'none' } : {}}
+    style={isSmall ? { 
+      paddingTop: '40vh', 
+      fontSize: '3rem', 
+      textShadow: '2px 2px 4px rgba(0,0,0,0.3), -1px -1px 2px rgba(255,255,255,0.1)',
+      WebkitTextStroke: '1px rgba(0,0,0,0.1)'
+    } : {
+      textShadow: '3px 3px 6px rgba(0,0,0,0.4), -2px -2px 4px rgba(255,255,255,0.1)',
+      WebkitTextStroke: '1px rgba(0,0,0,0.15)'
+    }}
   >
     {homePage.title}
   </motion.h1>
-  <img
+  <OptimizedImage
     onMouseEnter={() => handleMouseEnter('light')}
     onMouseLeave={handleMouseLeave}
-    className="flex-shrink-0 h-8/4 w-full object-cover lg:h-2/2 lg:w-auto transition-transform duration-500 ease-in-out hover:scale-110 uppercase absolute bottom-0 h-full z-0 slika"
+    className="flex-shrink-0 h-8/4 w-full object-cover lg:h-4/2 lg:w-[50vw] transition-transform duration-500 ease-in-out hover:scale-110 uppercase absolute bottom-0 h-full z-0 slika"
     src={homePage.yourImage.url}
     alt={homePage.yourImage.title}
+    width={1920}
+    height={1080}
+    loading="eager"
+    priority={true}
     style={isSmall ? { height: '90vh', objectFit: 'cover' } : {}}
   />
   <motion.h1
     onMouseEnter={() => handleMouseEnter('text')}
     onMouseLeave={handleMouseLeave}
-    className="text-darkGrey dark:text-cream text-7xl font-bold mb-[7rem] mx-auto uppercase font-bold text-center z-20 md:text-6xl lg:text-8xl text-6xl xsm:text-2xl animate__animated animate__backInUp"
-    style={isSmall ? { fontSize: '2.5rem', marginBottom: '1rem', marginTop: '1rem' } : {}}
+    className="text-darkGrey dark:text-cream text-7xl font-bold mb-[7rem] mx-auto uppercase font-bold text-center z-20 md:text-6xl lg:text-8xl text-6xl xsm:text-2xl animate__animated animate__backInUp drop-shadow-lg"
+    style={isSmall ? { 
+      fontSize: '2.5rem', 
+      marginBottom: '1rem', 
+      marginTop: '1rem',
+      textShadow: '2px 2px 4px rgba(0,0,0,0.3), -1px -1px 2px rgba(255,255,255,0.1)',
+      WebkitTextStroke: '1px rgba(0,0,0,0.1)'
+    } : {
+      textShadow: '3px 3px 6px rgba(0,0,0,0.4), -2px -2px 4px rgba(255,255,255,0.1)',
+      WebkitTextStroke: '1px rgba(0,0,0,0.15)'
+    }}
   >
     {homePage.job}
   </motion.h1>
@@ -366,8 +388,8 @@ const IndexPage = ({ data }) => {
           <div className="md:flex md:justify-between">
               <div className="mb-6 md:mb-0">
                   <a href="https://flowbite.com" className="flex items-center">
-                      <img src={footer.logo.url} className="mr-3 h-8" alt={footer.logo.title} />
-                      <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{homePage.title}</span>
+                      <OptimizedImage src={footer.logo.url} className="mr-3 h-8" alt={footer.logo.title} width={32} height={32} loading="lazy" />
+                      <span className="self-center text-2xl font-semibold whitespace-nowrap text-darkGrey dark:text-aquaBlue">{homePage.title}</span>
                   </a>
               </div>
               <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">

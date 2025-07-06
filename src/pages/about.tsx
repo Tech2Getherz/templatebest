@@ -3,10 +3,36 @@ import Layout from './Layout'
 import { HeadFC, graphql } from 'gatsby'
 import Cursor from '../components/Cursor'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import OptimizedImage from '../components/OptimizedImage';
 import "animate.css"
 
-export default function About({ data }) {
+interface AboutData {
+  allContentfulAbout: {
+    nodes: Array<{
+      mainTitle: string;
+      firstMedia: {
+        title: string;
+        url: string;
+      };
+      secondMedia: {
+        title: string;
+        url: string;
+      };
+      lowerTextTitle: string;
+      upperText: {
+        raw: string;
+      };
+      lowerTextOne: {
+        raw: string;
+      };
+      lowerTextTwo: {
+        raw: string;
+      };
+    }>;
+  };
+}
 
+export default function About({ data }: { data: AboutData }) {
 
     const about = data.allContentfulAbout.nodes[0]
     
@@ -39,9 +65,9 @@ export default function About({ data }) {
             </div>
 
             <div className="lg:mt-14 sm:mt-10 mt-12">
-                <img className="animate__animated animate__zoomInUp lg:block hidden w-full" src={about.firstMedia.url} alt={about.firstMedia.title} />
-                <img className="animate__animated animate__zoomInUp lg:hidden sm:block hidden w-full" src={about.firstMedia.url} alt={about.firstMedia.title} />
-                <img className="animate__animated animate__zoomInUp sm:hidden block w-full" src={about.firstMedia.url} alt={about.firstMedia.title} />
+                <OptimizedImage className="animate__animated animate__zoomInUp lg:block hidden w-full" src={about.firstMedia.url} alt={about.firstMedia.title} width={1200} height={800} loading="lazy" />
+                <OptimizedImage className="animate__animated animate__zoomInUp lg:hidden sm:block hidden w-full" src={about.firstMedia.url} alt={about.firstMedia.title} width={800} height={600} loading="lazy" />
+                <OptimizedImage className="animate__animated animate__zoomInUp sm:hidden block w-full" src={about.firstMedia.url} alt={about.firstMedia.title} width={600} height={400} loading="lazy" />
             </div>
 
             <div className="lg:mt-16 sm:mt-12 mt-16 flex lg:flex-row justify-between flex-col lg:gap-8 gap-12">
@@ -51,9 +77,9 @@ export default function About({ data }) {
                     <p onMouseEnter={() => handleMouseEnter('text')} onMouseLeave={handleMouseLeave} className="font-normal text-base leading-6 text-darkGrey dark:text-cream mt-6 animate__animated animate__fadeInUp">{documentToReactComponents(lowerParsedTwo)}</p>
                 </div>
                 <div className="lg:flex items-center w-full lg:w-1/2 ">
-                  <img className="lg:block hidden w-full" src={about.secondMedia.url} alt={about.secondMedia.title} />
-                    <img className="lg:hidden sm:block hidden w-full h-3/4" src={about.secondMedia.url} alt={about.secondMedia.title} />
-                    <img className="sm:hidden block w-full" src={about.secondMedia.url} alt={about.secondMedia.title} />
+                  <OptimizedImage className="lg:block hidden w-full" src={about.secondMedia.url} alt={about.secondMedia.title} width={600} height={400} loading="lazy" />
+                  <OptimizedImage className="lg:hidden sm:block hidden w-full h-3/4" src={about.secondMedia.url} alt={about.secondMedia.title} width={600} height={450} loading="lazy" />
+                  <OptimizedImage className="sm:hidden block w-full" src={about.secondMedia.url} alt={about.secondMedia.title} width={400} height={300} loading="lazy" />
                 </div>
             </div>
         </div>

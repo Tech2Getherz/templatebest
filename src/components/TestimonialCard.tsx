@@ -1,7 +1,18 @@
 import React from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
+import OptimizedImage from './OptimizedImage';
 
-export default function TestimonialCard({ input }) {
+interface TestimonialInput {
+  text: string;
+  name: string;
+  role: string;
+  avatar: {
+    url: string;
+    title: string;
+  };
+}
+
+export default function TestimonialCard({ input }: { input: TestimonialInput }) {
 
   const isSmall = useMediaQuery('(max-width: 768px)');
 
@@ -10,7 +21,15 @@ export default function TestimonialCard({ input }) {
       <div className="relative mx-auto mt-8 w-[90%] bg-darkGrey dark:bg-lightBlue rounded-lg shadow-lg">
         <div className="p-6 flex flex-col items-center">
           <div className="font-bold text-lg mb-2 text-cream dark:text-dark">{input.text}</div>
-          <img className="h-[80px] w-[80px] object-cover rounded-full mt-4" src={input.avatar.url} alt={input.avatar.title} style={{ objectFit: 'cover' }} />
+          <OptimizedImage 
+            className="h-[80px] w-[80px] object-cover rounded-full mt-4" 
+            src={input.avatar.url} 
+            alt={input.avatar.title} 
+            width={80}
+            height={80}
+            loading="lazy"
+            style={{ objectFit: 'cover' }} 
+          />
           <div className="font-bold text-lg mb-2 text-cream dark:text-darkGrey">{input.name}</div>
           <div className="text-sm mb-1 text-lightCream dark:text-darkGrey">{input.role}</div>
         </div>
@@ -30,7 +49,15 @@ export default function TestimonialCard({ input }) {
         </div>
         <div className="flex h-[200px]">
           <div className="flex-shrink-0 w-[40%] h-full overflow-hidden">
-            <img className="h-full w-full object-cover rounded-l-lg" src={input.avatar.url} alt={input.avatar.title} style={{ objectFit: 'cover' }} />
+            <OptimizedImage 
+              className="h-full w-full object-cover rounded-l-lg" 
+              src={input.avatar.url} 
+              alt={input.avatar.title} 
+              width={200}
+              height={200}
+              loading="lazy"
+              style={{ objectFit: 'cover' }} 
+            />
           </div>
           <div className="p-6 flex flex-col justify-between">
             <div className="font-bold text-lg text-cream dark:text-dark">{input.name}</div>

@@ -1,9 +1,23 @@
 import React, { useState } from 'react';
 import { navigate } from 'gatsby'
 import { useMediaQuery } from '@react-hook/media-query';
+import OptimizedImage from './OptimizedImage';
 
+interface Project {
+  title: string;
+  image: {
+    url: string;
+    title: string;
+  };
+  category: string;
+  url: string;
+}
 
-export default function ProjectCard({ project, onMouseEnter, onMouseLeave }) {
+export default function ProjectCard({ project, onMouseEnter, onMouseLeave }: { 
+  project: Project; 
+  onMouseEnter: () => void; 
+  onMouseLeave: () => void; 
+}) {
 
   const isSmall = useMediaQuery('(max-width: 768px)');
 
@@ -29,7 +43,7 @@ export default function ProjectCard({ project, onMouseEnter, onMouseLeave }) {
     window.location.href = url;
   }
 
-  if(isSmall){
+  if(isSmall)
     return (
       <div
       className="
@@ -51,10 +65,13 @@ export default function ProjectCard({ project, onMouseEnter, onMouseLeave }) {
       }}
       onClick={() => handleRedirect(url)}
     >
-      <img
+      <OptimizedImage
         src={image.url}
         alt={image.title}
         className="object-cover h-64 rounded-t-lg w-full shadow-lg"
+        width={400}
+        height={256}
+        loading="lazy"
       />
       <div className="flex flex-col p-6 space-y-2 mb-[50px]">
         <div className="text-4xl font-bold leading-tight text-darkGrey dark:text-brownCream">
@@ -73,7 +90,6 @@ export default function ProjectCard({ project, onMouseEnter, onMouseLeave }) {
       </div>
     </div>
     )
-  }
 
 
   else{
@@ -99,10 +115,13 @@ export default function ProjectCard({ project, onMouseEnter, onMouseLeave }) {
           ))}
         </div>
         {hovered && (
-          <img
+          <OptimizedImage
             src={image.url}
             alt={image.title}
             className="absolute w-auto max-h-[400px] transition-opacity duration-300 ease-in-out"
+            width={400}
+            height={400}
+            loading="lazy"
             style={{
               borderRadius: '15px',
               position: 'absolute',

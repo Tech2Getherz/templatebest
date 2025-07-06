@@ -1,5 +1,6 @@
 import { navigate } from 'gatsby';
 import React from 'react';
+import OptimizedImage from './OptimizedImage';
 
 const ServiceCard = ({ service, onMouseEnter, onMouseLeave }) => {
   
@@ -17,10 +18,13 @@ const ServiceCard = ({ service, onMouseEnter, onMouseLeave }) => {
       className="flex-shrink-0 w-full md:w-full max-w-md rounded-lg shadow-lg dark:border-gray-700 overflow-hidden mx-4 my-5 bg-darkGrey dark:bg-lightBlue"
     >
       <a href="#" aria-label={`View details of ${title}`}>
-        <img
-          className="rounded-t-lg h-[300px]"
+        <OptimizedImage
+          className="rounded-t-lg h-[300px] w-full"
           src={image.url}
           alt={title}
+          width={400}
+          height={300}
+          loading="lazy"
           style={{ objectFit: 'cover' }}
         />
       </a>

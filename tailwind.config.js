@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     screens: {
       'xsm': '320px',
-      'sm': '640px',
+      'sm': '6p40px',
       'md': '768px',
       'lg': '1024px',
       'xl': '1280px',
@@ -16,15 +16,15 @@ module.exports = {
     },
     extend: {
       colors: {
-        lightCream: '#F0D49D',  /* gold */
-        cream: '#D8B774',       /* darkGold */
-        brownCream: '#B89D65',  /* mediumGold */
-        brown: '#9C7F4E',       /* darkGold */
+        lightCream: '#283618',   /* very light cream */
+        cream: '#606c38',        /* warm orange/gold */
+        brownCream: '#dda15e',  /* darker orange/brown */
+        brown: '#bc6c25',       /* muted green/olive */
       
-        dark: '#2C3E50',        /* navy */
-        darkGrey: '#3A4B5C',    /* darkGrey */
-        lightBlue: '#B89D65',   /* lightNavy */
-        aquaBlue: '#9C7F4E'     /* mediumNavy */
+        dark: '#fefae0',        /* very dark green */
+        darkGrey: '#dda15e',    /* muted green/olive */
+        lightBlue: '#bc6c25',    /* warm orange/gold */
+        aquaBlue: '#606c38'     /* darker orange/brown */
       },
     },
   },
